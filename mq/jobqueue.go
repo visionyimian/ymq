@@ -10,8 +10,8 @@ type JobQueue struct {
 }
 
 //JobQueueNew 工厂方法
-func JobQueueNew() *JobQueue {
+func JobQueueNew(q int64) *JobQueue {
 	jobQueue = &JobQueue{
-		Jobs: make(chan Job)}
+		Jobs: make(chan Job, q)}
 	return jobQueue
 }
