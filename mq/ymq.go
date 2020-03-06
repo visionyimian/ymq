@@ -41,9 +41,14 @@ func (ymq *YMQ) Run() {
 
 	ymq.status = 1
 
+	ymq.initRedisPool()
 	go ymq.dispatcher.Run()
 	go ymq.rpc.Run(ctx)
 
 	<-ymq.closed
 	fmt.Println("Closed.")
+}
+
+func (ymq *YMQ) initRedisPool() {
+	Redis.InitPool()
 }
